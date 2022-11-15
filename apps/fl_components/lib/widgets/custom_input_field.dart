@@ -25,7 +25,6 @@ class CustomInputField extends StatelessWidget {
         obscureText: obscureText!,
         keyboardType: keyboardType ?? TextInputType.text,
         autofocus: false,
-        initialValue: '',
         textCapitalization: TextCapitalization.words,
         onChanged: (value) {
           print(value);
