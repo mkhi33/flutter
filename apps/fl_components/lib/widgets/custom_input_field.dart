@@ -8,6 +8,8 @@ class CustomInputField extends StatelessWidget {
   final IconData? suffixIcon;
   final TextInputType? keyboardType;
   final bool? obscureText;
+  final Map<String, String> formValues;
+  final String formProperty;
   const CustomInputField({
     Key? key,
     this.hintText,
@@ -17,6 +19,8 @@ class CustomInputField extends StatelessWidget {
     this.suffixIcon,
     this.keyboardType,
     this.obscureText = false,
+    required this.formValues,
+    required this.formProperty,
   }) : super(key: key);
 
   @override
@@ -26,9 +30,7 @@ class CustomInputField extends StatelessWidget {
         keyboardType: keyboardType ?? TextInputType.text,
         autofocus: false,
         textCapitalization: TextCapitalization.words,
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) => formValues[formProperty] = value,
         validator: (value) {
           if (value == null) {
             return 'El campo no puede estar vacío';
