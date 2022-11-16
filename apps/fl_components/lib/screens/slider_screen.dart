@@ -16,27 +16,29 @@ class _SliderScreenState extends State<SliderScreen> {
         appBar: AppBar(
           title: const Text('Slider and Checks'),
         ),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Slider.adaptive(
-              value: _sliderValue,
-              onChanged: (value) {
-                setState(() {
-                  _sliderValue = value;
-                });
-              },
-              max: 400,
-              min: 50,
-              activeColor: AppTheme.primary,
+        body: Column(children: [
+          Slider.adaptive(
+            value: _sliderValue,
+            onChanged: (value) {
+              setState(() {
+                _sliderValue = value;
+              });
+            },
+            max: 400,
+            min: 50,
+            activeColor: AppTheme.primary,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Image(
+                image: const NetworkImage(
+                    'https://eltallerdehector.com/wp-content/uploads/2022/08/Goku-saiyan-blue-png.png'),
+                fit: BoxFit.contain,
+                width: _sliderValue,
+              ),
             ),
-            Image(
-              image: const NetworkImage(
-                  'https://eltallerdehector.com/wp-content/uploads/2022/08/Goku-saiyan-blue-png.png'),
-              fit: BoxFit.contain,
-              width: _sliderValue,
-            ),
-            const SizedBox(height: 50),
-          ]),
-        ));
+          ),
+          const SizedBox(height: 50),
+        ]));
   }
 }
