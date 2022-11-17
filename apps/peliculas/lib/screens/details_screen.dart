@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -11,7 +12,14 @@ class DetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           const _CustomAppBar(),
-          SliverList(delegate: SliverChildListDelegate([_PosterAndTitle()]))
+          SliverList(
+              delegate: SliverChildListDelegate([
+            _PosterAndTitle(),
+            _OverView(),
+            _OverView(),
+            _OverView(),
+            CastingCards()
+          ]))
         ],
       ),
     );
@@ -34,6 +42,7 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           color: Colors.black12,
+          padding: EdgeInsets.only(bottom: 10),
           child: const Text(
             'movie.title',
             textAlign: TextAlign.center,
@@ -57,13 +66,13 @@ class _PosterAndTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
+            child: const FadeInImage(
               placeholder: AssetImage('assets/images/no-image.jpg'),
               image: NetworkImage('https://via.placeholder.com/200x300'),
               height: 150,
@@ -86,8 +95,8 @@ class _PosterAndTitle extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Icon(Icons.star_outline, size: 15, color: Colors.grey),
-                  SizedBox(width: 5),
+                  const Icon(Icons.star_outline, size: 15, color: Colors.grey),
+                  const SizedBox(width: 5),
                   Text('movie.voteAverage', style: textTheme.caption)
                 ],
               )
@@ -96,5 +105,20 @@ class _PosterAndTitle extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _OverView extends StatelessWidget {
+  const _OverView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: Text(
+          'Quis elit Lorem fugiat deserunt aute cupidatat reprehenderit. Eiusmod labore nisi elit nisi laboris do nisi veniam eu eiusmod non consequat. Est sint dolor minim excepteur minim cillum aliquip eiusmod consequat. Cillum sit eiusmod dolor aute aliqua pariatur labore mollit do.',
+          textAlign: TextAlign.justify,
+          style: Theme.of(context).textTheme.subtitle1,
+        ));
   }
 }
